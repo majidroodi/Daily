@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پلنر روزانه</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>پلنر روزانه</h1>
+    <form action="/add" method="post">
+        <input type="text" name="title" placeholder="افزودن وظیفه جدید">
+        <button type="submit">افزودن</button>
+    </form>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                {{ task.title }}
+                <a href="/complete/{{ task.id }}">{{ '✅' if task.completed else '🔄' }}</a>
+                <a href="/delete/{{ task.id }}">❌</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
